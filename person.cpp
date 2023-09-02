@@ -55,7 +55,12 @@ void addCitizen(PersonType list[], int &count){
     PersonType person;
     readCstring("Enter your name:", nameBuffer);
     readCstring("Enter your citizenship:", citizenshipBuffer);
-    readInt("Enter your age:", ageBuffer);
+    do{
+        readInt("Enter your age:", ageBuffer);
+        if(ageBuffer < 1 || ageBuffer > 115){
+            cout << "You have entered an invalid age\n";
+        }
+    }while(ageBuffer < 1 || ageBuffer > 115);
     readInt("Enter position number:", positionBuffer);
     if(checkPosition(count, positionBuffer)){
         strcpy(person.name, nameBuffer);
@@ -105,8 +110,6 @@ bool checkPosition(const int count, const int position){
         return true;
     } 
     return false;
-    
-
 }
 
 void goodBye(){
@@ -116,7 +119,7 @@ void goodBye(){
 
 void insertCitizen(PersonType list[], int &count, const PersonType person, int position){
     for (int i = count; i > position; i--){
-        list[count] = list [count - 1];
+        list[i] = list [i - 1];
     }
     list[position] = person;
     count++;
