@@ -115,7 +115,7 @@ void goodBye(){
 }
 
 void insertCitizen(PersonType list[], int &count, const PersonType person, int position){
-    for (int i = count; i >= position; i--){
+    for (int i = count; i > position; i--){
         list[count] = list [count - 1];
     }
     list[position] = person;
