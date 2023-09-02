@@ -49,19 +49,27 @@ void printPersons(const PersonType list[], int count)
 }
 
 //add your function here
+//add citizen to array in user designated position
+//checks for valid age
+//checks for correct position
 void addCitizen(PersonType list[], int &count){
     char nameBuffer[MAX_CHAR], citizenshipBuffer[MAX_CHAR];
     int ageBuffer, positionBuffer;
     PersonType person;
     readCstring("Enter your name:", nameBuffer);
     readCstring("Enter your citizenship:", citizenshipBuffer);
+
+    //check for valid age
     do{
         readInt("Enter your age:", ageBuffer);
         if(ageBuffer < 1 || ageBuffer > 115){
             cout << "You have entered an invalid age\n";
         }
     }while(ageBuffer < 1 || ageBuffer > 115);
+
+
     readInt("Enter position number:", positionBuffer);
+    //Checkl for valid position
     if(checkPosition(count, positionBuffer)){
         strcpy(person.name, nameBuffer);
         strcpy(person.citizenship, citizenshipBuffer);
@@ -71,7 +79,7 @@ void addCitizen(PersonType list[], int &count){
         cout << endl	
 		 << "After adding a person, the list is:\n"
 		 << endl;
-	printPersons(list, count);
+	    printPersons(list, count);
     } else {
         cout << endl
              << "Error! Invalid position.\n"
@@ -79,11 +87,13 @@ void addCitizen(PersonType list[], int &count){
     }  
 }
 
+//input from user
 void readCstring(const char *prompt, char input[]){
     cout << prompt << endl;
     cin.getline(input, MAX_CHAR, '\n');
 }
 
+//input from user with validation
 void readInt(const char *prompt, int &num){
     int inputBuffer = 0;
 
@@ -91,7 +101,7 @@ void readInt(const char *prompt, int &num){
         cout << prompt << endl;
         if(cin >> inputBuffer){
             if (inputBuffer < 0){
-                cout << "input must be a positive integer\n";\
+                cout << "Input must be a positive integer\n";\
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             } else {
@@ -105,22 +115,28 @@ void readInt(const char *prompt, int &num){
     }while (inputBuffer < 0 && !inputBuffer);
 }
 
+//check if the user entered position is valid
 bool checkPosition(const int count, const int position){
-    if (position > -1 && position <= count){
+    if (position > -1 && position <= count && count < 20){
         return true;
     } 
     return false;
 }
 
-void goodBye(){
-    cout << endl
-         << "Thank you for using my Citizen Database!!\n";
-}
-
+//shifts the array one to the right from the user provided position
+//and inserts new person into position
+//increments count
 void insertCitizen(PersonType list[], int &count, const PersonType person, int position){
     for (int i = count; i > position; i--){
         list[i] = list [i - 1];
     }
     list[position] = person;
     count++;
+}
+
+
+//salutations
+void goodBye(){
+    cout << endl
+         << "Thank you for using my Citizen Database!!\n";
 }
