@@ -52,6 +52,7 @@ void printPersons(const PersonType list[], int count)
 //add citizen to array in user designated position
 //checks for valid age
 //checks for correct position
+//prints array to console if position is valid
 void addCitizen(PersonType list[], int &count){
     char nameBuffer[MAX_CHAR], citizenshipBuffer[MAX_CHAR];
     int ageBuffer, positionBuffer;
@@ -94,6 +95,7 @@ void readCstring(const char *prompt, char input[]){
 }
 
 //input from user with validation
+//checks for positive integer
 void readInt(const char *prompt, int &num){
     int inputBuffer = 0;
 
