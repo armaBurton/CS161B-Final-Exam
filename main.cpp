@@ -19,7 +19,9 @@ int main()
 	//call your functions here to do what is required.
 	cout << endl;
 	addCitizen(list, count);
-	printPersons(list, count);
+	
+
+	goodBye();
 	return 0;
 }
 

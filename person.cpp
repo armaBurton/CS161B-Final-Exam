@@ -58,18 +58,20 @@ void addCitizen(PersonType list[], int &count){
     readInt("Enter your age:", ageBuffer);
     readInt("Enter position number:", positionBuffer);
     if(checkPosition(count, positionBuffer)){
-        cout << "true" << endl;
         strcpy(person.name, nameBuffer);
         strcpy(person.citizenship, citizenshipBuffer);
         person.age = ageBuffer;
 
         insertCitizen(list, count, person, positionBuffer);
+        cout << endl	
+		 << "After adding a person, the list is:\n"
+		 << endl;
+	printPersons(list, count);
     } else {
         cout << endl
              << "Error! Invalid position.\n"
              << endl;
-    }
-    goodBye();
+    }  
 }
 
 void readCstring(const char *prompt, char input[]){
@@ -95,17 +97,15 @@ void readInt(const char *prompt, int &num){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-    }while (!inputBuffer);
+    }while (inputBuffer < 0 && !inputBuffer);
 }
 
 bool checkPosition(const int count, const int position){
     if (position > -1 && position <= count){
-        cout << "true";
         return true;
-    } else {
-        cout << "false";
-        return false;
-    }
+    } 
+    return false;
+    
 
 }
 
